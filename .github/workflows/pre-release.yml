@@ -12,10 +12,15 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
+      - name: "Checkout source code"
+        uses: "actions/checkout@v3"
+        with:
+          lfs: true
+          fetch-depth: 0
       - name: "Build & test"
         run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-          cd ../ && wasm-pack build --target web
+          cd ./Crustacean && wasm-pack build --target web
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
