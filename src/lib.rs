@@ -17,6 +17,6 @@ pub fn get_next_move(fen: &str) -> JsValue {
         return JsValue::from_str(&chess_move.to_string());
     }
     return JsValue::from_str(
-        &ChessMove::new(Square::E4, Square::E4, Some(Piece::Queen)).to_string(),
+        &ChessMove::new(Square::E2, Square::E4, Some(Piece::Queen)).to_string(),
     );
 }
