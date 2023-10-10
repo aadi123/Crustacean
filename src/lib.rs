@@ -12,6 +12,7 @@ pub fn get_next_move(fen: &str) -> JsValue {
     };
     let movegen = MoveGen::new_legal(&board);
 
+    // return first random move
     for chess_move in movegen {
         // This move does not capture anything
         return JsValue::from_str(&chess_move.to_string());
