@@ -13,16 +13,14 @@ jobs:
 
     steps:
       # ...
-      - name: "Build & test"
+      - name: Fetch asset
+        run: gh release download --repo aadi123/Crustacean latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }}
+
+      - name: Build and Test
         run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
           wasm-pack build --target web
-
-      - uses: "aadi123/Crustacean@v0.2"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "latest"
-          prerelease: true
-          title: "Development Build"
-          files: |
-            pkg/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.PRIVATE_REPO_TOKEN }
