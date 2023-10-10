@@ -13,6 +13,11 @@ jobs:
 
     steps:
       # ...
+
+
+      - name: "Latest tag"
+        uses: EndBug/latest-tag@v1.6.1
+
       - name: "Build & test"
         run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
