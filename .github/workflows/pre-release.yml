@@ -15,7 +15,7 @@ jobs:
       - name: "Build & test"
         run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-          wasm-pack build --target web
+          cd ../ && wasm-pack build --target web
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
