@@ -20,7 +20,7 @@ jobs:
       - name: "Build & test"
         run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-          cd ./Crustacean && wasm-pack build --target web
+          cd /home/runner/work/Crustacean/Crustacean/ && wasm-pack build --target web
 
       - uses: "marvinpinto/action-automatic-releases@latest"
         with:
