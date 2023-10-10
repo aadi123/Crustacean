@@ -1,6 +1,7 @@
+use rand::prelude::*;
 use std::str::FromStr;
 
-use chess::{Board, ChessMove, Error, MoveGen, Piece, Square};
+use chess::{Board, Error, MoveGen};
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -11,13 +12,8 @@ pub fn get_next_move(fen: &str) -> JsValue {
         Err(_) => Board::default(),
     };
     let movegen = MoveGen::new_legal(&board);
-
+    let mut rng = rand::thread_rng();
     // return first random move
-    for chess_move in movegen {
-        // This move does not capture anything
-        return JsValue::from_str(&chess_move.to_string());
-    }
-    return JsValue::from_str(
-        &ChessMove::new(Square::E2, Square::E4, Some(Piece::Queen)).to_string(),
-    );
+    let chess_move = movegen.choose(&mut rng).unwrap();
+    return JsValue::from_str(&chess_move.to_string());
 }
