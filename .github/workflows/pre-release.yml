@@ -12,15 +12,12 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: "Latest tag"
-        uses: EndBug/latest-tag@v1.6.1
-
       - name: "Build & test"
         run: |
           curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
           wasm-pack build --target web
 
-      - uses: "aadi123/Crustacean@latest"
+      - uses: "marvinpinto/action-automatic-releases@latest"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           automatic_release_tag: "latest"
